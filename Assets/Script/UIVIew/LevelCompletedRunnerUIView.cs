@@ -43,11 +43,18 @@ namespace Script.UIVIew
         private void RestartLevel()
         {
             var pm = GameContext.Instance.SaveService.Load<ProgressModel>();
-            var asyncOperation = GameContext.Instance.SceneService.LoadScene($"Level_{pm.currentLevel-1}");
-            asyncOperation.completed += operation =>
+            if (pm.currentLevel == 1)
             {
-                GameContext.Instance.HideView();
-            };
+                var asyncOperation = GameContext.Instance.SceneService.LoadScene($"Level_{pm.currentLevel}");
+                asyncOperation.completed += operation => { GameContext.Instance.HideView(); };
+            }
+            else
+            {
+                var asyncOperation = GameContext.Instance.SceneService.LoadScene($"Level_{pm.currentLevel - 1}");
+                asyncOperation.completed += operation => { GameContext.Instance.HideView(); };
+            }
+            // var asyncOperation = GameContext.Instance.SceneService.LoadScene($"Level_{pm.currentLevel-1}");
+            //asyncOperation.completed += operation => { GameContext.Instance.HideView(); };
         }
 
         private void Update()

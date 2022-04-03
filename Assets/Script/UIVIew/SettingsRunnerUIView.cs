@@ -1,4 +1,6 @@
 ﻿
+using System;
+using System.Globalization;
 using Script.Core;
 using Script.Models;
 using Script.Service;
@@ -11,6 +13,7 @@ namespace Script.UIVIew
         [SerializeField] private Button backButton;
         [SerializeField] private Slider volumeSlider;
         [SerializeField] private Toggle audioToggle;
+        [SerializeField] private InputField maxSpeed;
         
         private void Awake()
         {
@@ -22,6 +25,7 @@ namespace Script.UIVIew
             volumeSlider.minValue = 0;
             volumeSlider.maxValue = 1;
             audioToggle.isOn = sm.mute;
+            maxSpeed.text = sm.maxSpeed.ToString(CultureInfo.InvariantCulture);
 
             backButton.onClick.AddListener(() => GameContext.Instance.ShowView(nameof(MenuRunnerUIView)));
             volumeSlider.onValueChanged.AddListener(v =>
@@ -39,6 +43,8 @@ namespace Script.UIVIew
                 settingsModel.mute = v;
                 GameContext.Instance.SaveService.Write(settingsModel);
             });
+            sm.maxSpeed = Convert.ToSingle(maxSpeed.text);
+            GameContext.Instance.SaveService.Write(sm);
         }
 
         public override string ViewName => nameof(SettingsRunnerUIView);

@@ -6,9 +6,5 @@
 
         T Load<T>(string name);
         void Save();
-
-        // object Load<T>();
-        //void Write(object pm);
-       
-        }
+    }
 }

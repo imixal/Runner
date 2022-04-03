@@ -205,10 +205,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeac5320594fa4e42b5ef12c795a2216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directForce: 25
-  turnForce: 20
-  maxSpeed: 50
-  coins: 0
+  directForce: 15
+  turnForce: 10
+  maxSpeed: 40
+  coins: 100
   coinsText: {fileID: 7474182156697109004}
 --- !u!1 &8146407736606391444
 GameObject:
